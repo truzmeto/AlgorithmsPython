@@ -31,3 +31,43 @@ def permute(s):
                 
     return out           
                                 
+
+
+def fibo_rec(n):
+    """
+    Recursive function to find n-th Fibonachi number
+    """
+    #base case
+    if n == 0:
+        return 0
+    elif n == 1 :
+        return 1
+    else:
+        return fibo_rec(n-1) + fibo_rec(n-2)   
+
+
+
+    
+n = 60
+cache = [None] * (n + 1)
+
+def fibo_dyn(n):
+    """
+    Cached implementation of fibonachi number calculation.
+    I saves already calculated Fib. number in a cache so that
+    it can be retrieved faster next time. This is efficient
+    solution only if we do multiple calls to a function. Otherwise
+    it is same as recursive solution.
+    """
+    
+    #base case
+    if n == 0 or n == 1:
+        return n
+    else:
+        #check cache
+        if cache[n] != None:
+            return cache[n]
+        
+        cache[n] = fibo_dyn(n-1) + fibo_dyn(n-2)   
+    
+    return cache[n]
